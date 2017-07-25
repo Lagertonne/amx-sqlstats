@@ -45,7 +45,11 @@ public client_putinserver(id) {
 	server_print( "%d entered server!", id )
 	new pname[32]
 	new pteam[32]
-	get_user_name(id, pname, 32)
-	get_user_team(id, pteam, 32)
-	db_execute("INSERT INTO players (id, name, team) VALUES (id, %s, %d)
+	get_user_name(id, pname, 31)
+	get_user_team(id, pteam, 31)
+
+	new request[254]
+	format(request, 253, "INSERT INTO players (id, name, team) VALUES (%d, %s, %d)", id, pname, str_to_num(pteam))
+	server_print(request)	
+//	db_execute(request)
 }
